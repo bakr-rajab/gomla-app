@@ -16,11 +16,7 @@ const categorySchema = new mongoose.Schema({
     },
     icon:{
         type:String,
-    },
-    products:[{
-        type:Schema.Types.ObjectId,
-        ref:"Product"
-    }]
+    }
 },{timestamps:true})
 
 module.exports=mongoose.model('Category',categorySchema);

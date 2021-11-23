@@ -13,8 +13,7 @@ exports.create = async (req, res,next) => {
         // process.exit(1);
     } 
     try {
-        const newCategory = new Category(req.body); 
-   
+        const newCategory = new Category(req.params); 
          await  newCategory.save().
             then((category) => res.status(200).json(category))
             .catch((err) => next(err))
