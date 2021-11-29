@@ -33,7 +33,7 @@ mongoose.connect(process.env.LOCAL_DB||`mongodb://127.0.0.1:27017/gomla`,{useNew
     if(!err)
     {
        await app.listen(process.env.PORT||8080,()=>{
-            console.log('Bakend is runing');
+            console.log('Bakend is runingon ...%s',process.env.PORT || 8080);
         })
         console.log('db connection successful ... %s',db);
     }

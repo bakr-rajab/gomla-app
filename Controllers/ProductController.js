@@ -22,6 +22,27 @@ exports.create = async (req, res,next) => {
     next(error);
   }
 };
+exports.update = async (req, res,next) => {
+  // res.send(req.body)
+  // validate input parameters
+  const { error } =productValidation(req.body);
+  if (error) {
+     // next(error)
+     return res
+      .status(402)
+      .json({ error: error.details[0].message, status: "error" });
+      // process.exit(1);
+  }
+  // const { name, category, price,brand, description,rating,reviews,img} = req.body;
+  const newProduct = new Product(req.body); 
+  try {
+    await  newProduct.save().then((product) => res.status(200).json(product))
+          .catch((err) => next(err))
+} catch (error) {
+  next(error);
+}
+};
+
 exports.getAll=async(req,res,next)=> {
     try {
       const products = await Product.find({})
@@ -71,6 +92,25 @@ exports.index=async(req,res,next)=> {
     // res.send(req.params);
     const category = await Category.findById(req.params.id).populate("products")
     res.json(category)
+  } catch (error) {
+    next(error);
+  }
+}
+
+exports.delete=async(req,res,next)=> {
+  try {
+    // res.send(req.params);
+    const product = await Product.findById(req.params.id)
+    res.json(product)
+  } catch (error) {
+    next(error);
+  }
+}
+exports.search=async(req,res,next)=> {
+  try {
+    // res.send(req.params);
+    const product = await Product.find({"category_id":req.params.id})
+    res.json(product)
   } catch (error) {
     next(error);
   }

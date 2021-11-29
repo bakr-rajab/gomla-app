@@ -3,7 +3,7 @@ const Category=require("../models/Category");
 const { categoryValidation } = require("../validation");
 
 exports.create = async (req, res,next) => {
-    // res.send(req.body)
+    //  res.send(req.body)
     // validate input parameters
     const { error } =categoryValidation(req.body);
     if (error) {
@@ -13,7 +13,7 @@ exports.create = async (req, res,next) => {
         // process.exit(1);
     } 
     try {
-        const newCategory = new Category(req.params); 
+        const newCategory = new Category(req.body); 
          await  newCategory.save().
             then((category) => res.status(200).json(category))
             .catch((err) => next(err))
