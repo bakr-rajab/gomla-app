@@ -7,9 +7,9 @@ router.get('/',CategoryController.index)
 router.get('/:id',CategoryController.show)
 
 router.post('/',CategoryController.create)
-// router.post('/test',(req,res)=>{
-//     res.json(req.body)
-// })
+router.put('/:id',CategoryController.update)
+router.delete('/:id',CategoryController.destroy)
+
 router.post('/:id/products',ProductController.createProduct)
 router.get('/:id/products',ProductController.index)
 
