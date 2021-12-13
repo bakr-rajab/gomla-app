@@ -14,10 +14,11 @@ const cors=require('cors')
 // middleware
 app.use(express.json())
 app.use(helmet())
-app.use(morgan('common'))
+app.use(morgan('tiny'))
 app.use(cors())
+//catch error 
 app.use((err,req,res,next) => {
-    res.status(500).send({message:err.message});
+    res.status(500).json({message:err.message});
 })
 
 // routes
@@ -33,9 +34,9 @@ mongoose.connect(process.env.LOCAL_DB||`mongodb://127.0.0.1:27017/gomla`,{useNew
     if(!err)
     {
        await app.listen(process.env.PORT||8080,()=>{
-            console.log('Bakend is runingon ...%s',process.env.PORT || 8080);
+            console.log('Bakend is runingon ...http://localhost:%s',process.env.PORT || 8080);
         })
-        console.log('db connection successful ... %s',db);
+        console.log('db connection successful ... ');
     }
     else console.warn('db connection errors ...');
 })

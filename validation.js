@@ -25,12 +25,16 @@ const loginValidation = (data) => {
     const schema = Joi.object({
       name: Joi.string().min(3).required(),
       price: Joi.number().required(),
-      category: Joi.string(),
+      category: Joi.string().required(),
       image: Joi.string().required(),
       brand: Joi.string(),
       rating: Joi.number(),
       reviews: Joi.number(),
+      images: Joi.array(),
       description: Joi.string(),
+      countInStock: Joi.number(),
+      isFeatured: Joi.boolean(),
+      offer: Joi.number(),
     });
     
     return schema.validate(data);
